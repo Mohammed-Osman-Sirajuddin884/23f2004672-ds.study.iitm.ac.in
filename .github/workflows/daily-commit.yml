@@ -1,12 +1,3 @@
-# Clone your repository (if you haven't already)
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-cd YOUR_REPOSITORY
-
-# Create the workflows directory
-mkdir -p .github/workflows
-
-# Create the workflow file
-cat > .github/workflows/daily-commit.yml << 'EOF'
 name: Daily Auto Commit
 
 on:
@@ -22,9 +13,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       
-    - name: Step with email 23f2004672@ds.study.iitm.ac.in
+    - name: Step with email 23f2004672@ds.study.iitm.ac.in - Update timestamp
       run: |
         echo "Last auto-commit: $(date)" > last_commit.txt
+        cat last_commit.txt
         
     - name: Commit changes
       run: |
@@ -36,9 +28,3 @@ jobs:
     - name: Push changes
       run: |
         git push
-EOF
-
-# Add, commit, and push the file
-git add .github/workflows/daily-commit.yml
-git commit -m "Add daily auto-commit workflow"
-git push
